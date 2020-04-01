@@ -22,7 +22,7 @@ namespace Testing
             var IntList = new List<int>();
             IntList.Add(55);
             Console.WriteLine(IntList[0]);
-            
+            var array = new int[10];
             
         }
         
@@ -44,7 +44,6 @@ namespace Testing
         public SingleLinkedList() // конструктор: создание пустого списка
         {
             First = null;
-            
         }
 }
 
