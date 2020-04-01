@@ -23,6 +23,7 @@ namespace Testing
             IntList.Add(55);
             Console.WriteLine(IntList[0]);
             var array = new int[10];
+            Console.WriteLine(IntList[0]);
             
         }
         
