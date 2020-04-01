@@ -25,6 +25,7 @@ namespace Testing
             var array = new int[10];
             Console.WriteLine(IntList[0]);
             Console.WriteLine("Добавил новое задание");
+            Console.WriteLine("Отправил еще один коммит");
             
         }
         
