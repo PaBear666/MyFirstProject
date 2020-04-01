@@ -24,7 +24,7 @@ namespace Testing
             Console.WriteLine(IntList[0]);
             var array = new int[10];
             Console.WriteLine(IntList[0]);
-            Console.WriteLune("Добавил новое задание");
+            Console.WriteLine("Добавил новое задание");
             
         }
         
