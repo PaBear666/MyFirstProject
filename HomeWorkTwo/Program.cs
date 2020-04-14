@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HomeWorkTwo
+namespace RecurseHW
 {
     class Program
     {

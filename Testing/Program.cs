@@ -1,20 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-
 namespace Testing
 {
     class Program
     {
-        #region Вариант 1
-        //static void Main(string[] args)
-        //{
-        //    byte[][] months = new byte[12][];
-        //    months[0] = new byte[31];
-        //    months[0][0] = 1;
-
-
-        //}
-        #endregion
         static void Main(string[] args)
         {
             SingleLinkedList L = new SingleLinkedList(new int[] {1,2,3,4});
@@ -29,11 +18,10 @@ namespace Testing
             Console.WriteLine(L.Sum());
             L.Destroy();
             // 39 cтраница
-
+            
 
 
         }
-
     }
     public class Node // Класс «Узел односвязного списка»
     {

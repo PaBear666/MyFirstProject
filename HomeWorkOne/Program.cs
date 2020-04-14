@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HomeWorkOne
+namespace TypeValueHW
 {
     class Person           //Correct
     {
