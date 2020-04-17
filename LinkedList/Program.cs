@@ -1,7 +1,18 @@
 ﻿using System;
 
 namespace LinkedList
-{
+{ 
+    class Program 
+    { 
+        static void Main()
+        {
+            var L = new SingleLinkedList(new int[] { 23, 55, 66, 77 });
+            var P = new SingleLinkedList(new int[] { 23, 55, 66, 77 });
+            L.AddNewSingleLinkedList(P);
+            L.Print();
+        }
+
+    }
     public class Node // Класс «Узел односвязного списка»
     {
         public int Info { get; set; }
@@ -101,9 +112,10 @@ namespace LinkedList
             Node p = First;
             while (p != null)
             {
-                Console.Write(p.Info);
+                Console.Write(p.Info + " ");
                 p = p.Link;
             }
+            Console.WriteLine();
         }
         public int Sum()
         {
@@ -119,6 +131,39 @@ namespace LinkedList
         public void Destroy()
         {
             First = null;
+        }
+        public Node FindNeedPlace(int value_place)
+        {
+            Node p = First;
+            for(int i = 1; i < value_place; i++)
+                p = p.Link;
+            return p;
+            
+
+        }
+        public void AddNewSingleLinkedList(SingleLinkedList K)
+        {
+            if (K != null)
+            {
+                if (First == null)
+                {
+                    First = K.First;
+                }
+                else
+                {
+                    Node q = Last;
+                    q.Link = K.First;
+                }
+            }
+        }
+        public void Result(byte value_place,byte number)
+        {
+            Node q = FindNeedPlace(value_place);
+            for(int i = 0; i <= number; i++)
+            {
+                q = q.Link;
+            }
+            FindNeedPlace(value_place).Link = q;
         }
     }
 }

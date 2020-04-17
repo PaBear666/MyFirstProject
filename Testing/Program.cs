@@ -1,25 +1,11 @@
 ﻿using System;
-using LinkedList;
+using LinkedListString;
 namespace Testing
 {
     class Program
     {
         static void Main(string[] args)
         {
-            SingleLinkedList L = new SingleLinkedList(new int[] { 1, 2, 3, 4 });
-            //Console.WriteLine(L.First.Link.Info);
-            //Console.WriteLine(L.FindNeedInfo(8));// 2.4.6 Поиск узла в односвязном списке по заданному условию
-            //L.InsertAfter(5, L.First.Link.Link);//2.4.7 Включение в односвязный список нового узла за тем узлом, на который предварительно установлена ссылка
-            //Console.WriteLine(L.First.Link.Link.Link.Info); 
-            //L.DeleteBeforeNode(L.First.Link); //2.4.9. Исключение из односвязного списка узла, на который предварительно установлена ссылка
-            //Console.WriteLine(L.First.Link.Info);
-            L.Print();
-            Console.WriteLine();
-            Console.WriteLine(L.Sum());
-            L.Destroy();
-            // 39 cтраница
-
-
 
         }
     }
@@ -188,4 +174,43 @@ namespace Testing
 
     //    //}
     //}
+    class Node
+    {
+        public Node Link { get; set; }
+        public int Info { get; set; }
+        public Node(int info)
+        {
+            Info = info;
+        }
+        public Node(int info, Node link) : this(info)
+        {
+            Link = link;
+        }
+    }
+    class SingleListLink
+    {
+        Node First;
+        public SingleListLink()
+        {
+            First = null;
+        }
+        public SingleListLink(int[] dates)
+        {
+            if(dates.Length == 0)
+            {
+                First = null;
+            }
+            else
+            {
+                First = new Node(dates[0], null);
+                for (int i = 1; i < dates.Length; i++)
+                {
+                    Node p = new Node(dates[i], null); // создание узла списка
+                    First = p; // вставка нового узла за текущим последним узлом
+                    Last = p; // новое значение ссылки на последний узел
+                }
+            }
+        }
+    }
+       
 }
