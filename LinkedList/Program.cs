@@ -6,9 +6,9 @@ namespace LinkedList
     { 
         static void Main()
         {
-            var L = new SingleLinkedList(new int[] { 23, 55, 66, 77 });
-            var P = new SingleLinkedList(new int[] { 23, 55, 66, 77 });
-            L.AddNewSingleLinkedList(P);
+            SingleLinkedList L = new SingleLinkedList(); // конструктор
+            SingleLinkedList Q = new SingleLinkedList(new int[]{9,4}); // конструктор
+            L.Create(4);
             L.Print();
         }
 
@@ -62,6 +62,7 @@ namespace LinkedList
             // узла списка
             // создание узла списка со значением data
         }
+
         public void Create(int[] dates) // first – ссылка на первый узел списка
                                         // dates – массив значений информационных полей
         {
@@ -73,10 +74,10 @@ namespace LinkedList
             }
 
         }
-        public void DeleteBeginning(int number) //Удаление из начала списка определенное кол-во узлов
+
+        public void DeleteBeginning() //Удаление из начала списка определенное кол-во узлов
         {
-            Node p;
-            p = First;
+            
             First = First.Link;
 
         }
@@ -141,18 +142,22 @@ namespace LinkedList
             
 
         }
-        public void AddNewSingleLinkedList(SingleLinkedList K)
+        public void AddNewSingleLinkedList(SingleLinkedList q)
         {
-            if (K != null)
+            if (q != null)
             {
                 if (First == null)
                 {
-                    First = K.First;
+                    First = q.First;
                 }
                 else
                 {
-                    Node q = Last;
-                    q.Link = K.First;
+                    Node p = First;
+                    while(p.Link != null)
+                    {
+                        p = p.Link;
+                    }
+                    p.Link = q.First;
                 }
             }
         }
@@ -164,6 +169,36 @@ namespace LinkedList
                 q = q.Link;
             }
             FindNeedPlace(value_place).Link = q;
+        }
+        public void Create(int a)
+        {
+            if (First != null)
+            {
+                Node p = First;
+                p.Link = new Node(a);
+            }
+            else
+            {
+                First = new Node(a);
+            }
+        }
+        public void Test (SingleLinkedList Q)
+        {
+            Node p = First;
+            Node q = Q.First;
+            Node q1 = Q.First.Link;
+            while (p != null && q1 != null)
+            {
+                if (q1 != null)
+                {
+                    q.Link = p.Link;
+                    p.Link = q;
+                    p = p.Link.Link;
+                    q = q1;
+                    q1 = q1.Link;
+                }
+            }
+            p.Link = q;
         }
     }
 }

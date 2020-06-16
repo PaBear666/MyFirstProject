@@ -6,13 +6,11 @@ namespace LinkedListString
     {
         static void Main()
         {
-            var L = new SingleLinkedList(new string[] { "ВаВа", "ВоВа", "Вася", "Вппя" });
-            var Q = new SingleLinkedList();
-            var P = new SingleLinkedList();
-            L.Result(Q, P, "Ва");
-            L.Print();
-            Q.Print();
-            P.Print();
+            var L = new SingleLinkedList(new string[] {"@"});
+
+            Console.WriteLine(L.Recurse(L.First));
+
+
         }
     }
     public class Node // Класс «Узел односвязного списка»
@@ -29,6 +27,7 @@ namespace LinkedListString
             Link = link;
         }
     }
+
     public class SingleLinkedList // Класс «Односвязные списки»
     {
         public Node First { get; set; } // ссылка на первый узел списка
@@ -55,24 +54,20 @@ namespace LinkedListString
                 }
             }
         }
-        public void Create(string[] dates) // first – ссылка на первый узел списка
-                                           // dates – массив значений информационных полей
+        public void Create(string dates) // first – ссылка на первый узел списка
+                                         // dates – массив значений информационных полей
         {
-            for (int i = 0; i < dates.Length; i++)
+            Node p = new Node(dates, null); // вставка узла в начало списка
+            if (First == null)
             {
-                Node p = new Node(dates[i], null); // вставка узла в начало списка
-                if(First == null)
-                {
-                    First = p;
-                }
-                else
-                {
-                    First.Link = p;
-                }
-
-                
+                First = p;
+                Last = First;
             }
-
+            else
+            {
+                Last.Link = p;
+                Last = p;
+            }
         }
         /// <summary>
         /// Метод выводящий список на экран
@@ -108,22 +103,51 @@ namespace LinkedListString
         /// <param name="q">Список,в котором слова будут начинаться на заданную комбинацию</param>
         /// <param name="k">Список,в котором слова будут заканчиваться в заданную комбинацию</param>
         /// <param name="line">Заданная комбинация</param>
-        public void Result(SingleLinkedList q, SingleLinkedList k,string line)
+        public void AddNewElement(string s)
+        {
+            if (First == null)
+            {
+                First = new Node(s, null);
+            }
+            else
+            {
+                Node p = First;
+                while (p != null)
+                {
+                    p = p.Link;
+                }
+                p = new Node(s, null);
+            }
+        }
+        public void Result(SingleLinkedList q, SingleLinkedList k, string line)
         {
             Node o = First;//Создает ссылку ,которая будет ходить по основному списку
             for (int i = 0; i < LengthList(); i++)
             {
                 if (o.Info.StartsWith(line))//Если слово начинается на данную комбинацию
                 {
-                    q.Create(new string[] {o.Info}); //Добавляет в список данное слово
+                    q.Create(o.Info); //Добавляет в список данное слово
                 }
                 if (o.Info.EndsWith(line))//Если слово заканчивается на данную комбинацию
                 {
-                    k.Create(new string[] {o.Info});//Добавляет в список данное слово
+                    k.Create(o.Info);//Добавляет в список данное слово
                 }
                 o = o.Link;//Продвигает указать в основном списке
             }
         }
-        
+        public int Recurse(Node p)
+        {
+            int i;
+            if (p == null)
+            { 
+                i = 0; 
+            }
+            else
+            {
+                i =  Recurse(p.Link) + 1;
+            }
+            return i;
+        }
+
     }
 }

@@ -2,215 +2,183 @@
 using LinkedListString;
 namespace Testing
 {
-    class Program
+
+    public static class Kata
     {
-        static void Main(string[] args)
+        static public void Main()
         {
-
+            Console.WriteLine(DigitalRoot(543));
         }
-    }
-    //public class Node // Класс «Узел односвязного списка»
-    //{
-    //    public int Info { get; set; }
-    //    public Node Link { get; set; }
-
-    //    public Node(int info)
-    //    {
-    //        Info = info;
-    //    }
-    //    public Node(int info, Node link) : this(info)
-    //    {
-    //        Link = link;
-    //    }
-    //}
-    //public class SingleLinkedList // Класс «Односвязные списки»
-    //{
-    //    public Node First { get; set; } // ссылка на первый узел списка
-    //    public Node Last { get; set; }
-    //    public SingleLinkedList() // конструктор: создание пустого списка
-    //    {
-    //        First = null;
-    //    }
-
-    //    public SingleLinkedList(int[] dates) // first – ссылка на первый узел списка
-    //    { // dates – массив значений информационных полей
-    //      // last – ссылка на последний узел списка
-    //        if (dates.Length == 0) First = null; // создание пустого списка
-    //        else
-    //        {
-    //            First = new Node(dates[0], null); // создание первого узла списка
-    //            Last = First;
-    //            // цикл включения в список остальных элементов
-    //            for (int i = 1; i < dates.Length; i++)
-    //            {
-    //                Node p = new Node(dates[i], null); // создание узла списка
-    //                Last.Link = p; // вставка нового узла за текущим последним узлом
-    //                Last = p; // новое значение ссылки на последний узел
-    //            }
-    //        }
-    //    }
-    //    public void InsertBeforeFirst(int data)
-    //    {
-    //        Node p = new Node(data, First);
-    //        First = p; // новое значение ссылки на первый узел
-    //        // first – ссылка на первый узел списка
-    //        // data – значение информационного поля
-    //        // узла списка
-    //        // создание узла списка со значением data
-    //    }
-    //    public void Create(int[] dates) // first – ссылка на первый узел списка
-    //                                    // dates – массив значений информационных полей
-    //    {
-    //        First = null; // создание пустого списка
-    //        for (int i = 0; i < dates.Length; i++)
-    //        {
-    //            Node p = new Node(dates[i], First); // вставка узла в начало списка
-    //            First = p;
-    //        }
-
-    //    }
-    //    public void DeleteBeginning(int number) //Удаление из начала списка определенное кол-во узлов
-    //    {
-    //        Node p;
-    //        p = First;
-    //        First = First.Link;
-
-    //    }
-    //    public int FindNeedInfo(int value) //Поиск узла в односвязном списке по заданному условию
-
-    //    {
-    //        Node p = First;
-    //        int i = 0;
-    //        while (p != null && p.Info != value)
-    //        {
-    //            p = p.Link;
-    //            i++;
-    //        }
-
-    //        return i;
-    //    }
-    //    public void InsertAfter(int data, Node p) //Включение в односвязный список нового узла за тем узлом, на который предварительно установлена ссылка
-    //    {
-    //        Node q = new Node(data, p.Link);
-    //        p.Link = q;
-    //    }
-    //    public void DeleteBeforeNode(Node p)
-    //    {
-    //        Node q = First;
-    //        while (q.Link != p)
-    //        {
-    //            q = q.Link;
-    //        }
-    //        q.Link = p.Link;
-    //    }//Исключение из односвязного списка узла, на который предварительно установлена ссылка
-    //    public void Print()
-    //    {
-    //        Node p = First;
-    //        while (p != null)
-    //        {
-    //            Console.Write(p.Info);
-    //            p = p.Link;
-    //        }
-    //    }
-    //    public int Sum()
-    //    {
-    //        int sum = default;
-    //        Node p = First;
-    //        while (p != null)
-    //        {
-    //            sum = p.Info + sum;
-    //            p = p.Link;
-    //        }
-    //        return sum;
-    //    }
-    //    public void Destroy()
-    //    {
-    //        First = null;
-    //    }
-
-
-
-
-
-    //    //public class Node<T>
-    //    //{
-    //    //    Node<T> head; // головной/первый элемент
-    //    //    Node<T> last; // последний/хвостовой элемент
-    //    //    int count;  // количество элементов в списке
-
-    //    //    public Node(T data)
-    //    //    {
-    //    //        Data = data;
-    //    //    }
-    //    //    public T Data { get; set; }
-    //    //    public Node<T> Next { get; set; }
-
-    //    //    public void Add(T data)
-    //    //    {
-    //    //        Node<T> node = new Node<T>(data);
-
-    //    //        if (head == null)
-    //    //            head = node;
-    //    //        else
-    //    //            last.Next = node;
-
-    //    //        last = node;
-    //    //        count++;
-    //    //    }
-    //    //    /// <summary>
-    //    //    /// Метод добавления элемент в начало списка
-    //    //    /// </summary>
-    //    //    /// <param name="data">Входные параметры</param>
-    //    //    public void AppendFirst(T data)
-    //    //    {
-    //    //        Node<T> node = new Node<T>(data);
-    //    //        node.Next = head;
-    //    //        head = node;
-    //    //        if (count == 0)
-    //    //            last = head;
-    //    //        count++;
-
-    //    //    }
-
-    //    //}
-    //}
-    class Node
-    {
-        public Node Link { get; set; }
-        public int Info { get; set; }
-        public Node(int info)
-        {
-            Info = info;
-        }
-        public Node(int info, Node link) : this(info)
-        {
-            Link = link;
-        }
-    }
-    class SingleListLink
-    {
-        Node First;
-        public SingleListLink()
-        {
-            First = null;
-        }
-        public SingleListLink(int[] dates)
-        {
-            if(dates.Length == 0)
+        public static string AddBinary(int a, int b)
             {
-                First = null;
+            return Recurse(a + b);
+
+            }
+        public static string Recurse(int c)
+            {
+                string str;
+                if(c == 0 || c == 1)
+                {
+                    if(c == 0)
+                    {
+                        str = "0";
+                        
+                    }
+                    else
+                    {
+                        str = "1";
+                    }
+                    return str;
+                }
+                else
+                {
+                    str = Recurse(c % 2);
+                    str = Recurse(c / 2) + str;
+                return str;
+                }
+
+            }
+        public static string Tickets(int[] peopleInLine)
+        {
+            int a = 0;
+            int b = 0;
+            bool con = peopleInLine[0] == 25 ? true : false; 
+            int i = 0;
+            while ((i < peopleInLine.Length) && con)
+            {
+                switch (peopleInLine[i]) 
+                {
+                    case 25:
+                        a = a + 1;
+                        i++;
+                        break;
+                    case 50:
+                        if(a > 0)
+                        {
+                            a = a - 1;
+                            b = b + 1;
+                            i++;
+                        }
+                        else
+                        {
+                            con = false;
+                        }
+                        break;
+                    case 100:
+                        if ((a > 0 && b > 0) || a > 3  || b > 2)
+                        {
+                            if (a > 0 && b > 0)
+                            {
+                                b -= 1;
+                                a -= 1;
+                                i++;
+                            }
+                            else if (b > 2)
+                            {
+                                b = b - 2;
+                                i++;
+                            }else if(a > 3)
+                                {
+                                a = a - 3;
+                                i++;
+                                }
+                        }
+                        else
+                        {
+                            con = false;
+                        }
+                        break;
+                }
+            }
+            if(i == peopleInLine.Length && con)
+            {
+                return "YES";
             }
             else
             {
-                First = new Node(dates[0], null);
-                for (int i = 1; i < dates.Length; i++)
+                return "NO";
+            }
+           
+        }
+        public static string DuplicateEncode(string word)
+        {
+            string newword = word.ToLower();
+            bool check;
+            char[] letter = new char[word.Length];
+            string wordreturn = null;
+            for(int i = 0;i < (newword.Length - 1); i++)
+            {
+                for(int j = i + 1;j < newword.Length; j++)
                 {
-                    Node p = new Node(dates[i], null); // создание узла списка
-                    First = p; // вставка нового узла за текущим последним узлом
-                    Last = p; // новое значение ссылки на последний узел
+                    if(newword[i] == newword[j])
+                    {
+                        letter[i] = newword[i];
+                        break;
+                    }
+                }  
+            }
+            for(int i = 0;i < newword.Length; i++)
+            {
+                check = true;
+                for(int j = 0;j < letter.Length; j++)
+                {
+                    if(newword[i] == letter[j])
+                    {
+                        wordreturn = wordreturn + ")";
+                        check = false;
+                        break;       
+                    }
+                }
+                if(check)
+                {
+                    wordreturn = wordreturn + "(";
+                }
+
+            }
+            return wordreturn;
+        }
+        public static int[] ArrayDiff(int[] a, int[] b)
+        {
+            int[] ap = new int[a.Length];
+            int value = a.Length;
+            for(int i = 0;i < b.Length; i++)
+            {
+                int k = 0;
+                for (int j = 0;j < a.Length; j++)
+                {
+                    if (b[i] == a[j])
+                    {
+                        value -= 1;
+                        
+                    }
+                    else
+                    {
+                        ap[k] = a[j];
+                        k++;
+                    }
+
                 }
             }
+            int[] array = new int[value];
+            for(int i = 0;i < value; i++)
+            {
+                array[i] = ap[i];
+            }
+            return array;
+        }
+        public static int DigitalRoot(long n)
+        {
+            long sum = 0;
+            for (int i = 0; i < n.ToString().Length; i++)
+            {
+                sum = n.ToString()[i] - '0' + sum;
+            }
+            if (n.ToString().Length != 1)
+            {
+                sum = (long)DigitalRoot(sum);
+            }
+            return (int)sum;
         }
     }
-       
+
 }
