@@ -21,7 +21,7 @@ namespace Test
         }
         void NewMethod()
         {
-            Console.WriteLine("Теперь изменил в самом master ");
+            Console.WriteLine("А теперь меняем и в самой ветке");
         }
     }
 }
