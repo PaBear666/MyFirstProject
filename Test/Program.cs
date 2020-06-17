@@ -21,7 +21,7 @@ namespace Test
         }
         void NewMethod()
         {
-            Console.WriteLine("Новый метод для ветки newclass");
+            Console.WriteLine("Теперь изменил в самом master ");
         }
     }
 }
