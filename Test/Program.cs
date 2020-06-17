@@ -19,6 +19,9 @@ namespace Test
         {
             Console.WriteLine(CheckInput.CheckStr("ыы"));
         }
-       
+        void NewMethod()
+        {
+            Console.WriteLine("Новый метод для ветки newclass");
+        }
     }
 }
