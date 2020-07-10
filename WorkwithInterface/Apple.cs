@@ -26,7 +26,7 @@ namespace WorkwithInterface
         { 
             get 
             { 
-                return 150; 
+                return 300; 
             } 
         }
 
