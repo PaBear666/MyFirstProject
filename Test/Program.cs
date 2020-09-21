@@ -1,5 +1,6 @@
 ﻿using MyLib;
 using System;
+using System.Collections.Generic;
 
 namespace Test
 {
@@ -17,11 +18,8 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(CheckInput.CheckStr("ыы"));
+            var list = new List<int>();
         }
-        void NewMethod()
-        {
-            Console.WriteLine("А теперь меняем и в самой ветке");
-        }
+
     }
 }

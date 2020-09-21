@@ -13,49 +13,39 @@ namespace LinkedList
         }
 
     }
-    public class Node // Класс «Узел односвязного списка»
+    public class Node<T> // Класс «Узел односвязного списка»
     {
-        public int Info { get; set; }
-        public Node Link { get; set; }
+        public T Info { get; set; }
+        public Node<T> Link { get; set; }
 
-        public Node(int info)
+        public Node(T info)
         {
             Info = info;
         }
-        public Node(int info, Node link) : this(info)
+        public Node(T info, Node<T> link) : this(info)
         {
             Link = link;
         }
+
     }
-    public class SingleLinkedList // Класс «Односвязные списки»
+    public class SingleLinkedList<T> // Класс «Односвязные списки»
     {
-        public Node First { get; set; } // ссылка на первый узел списка
-        public Node Last { get; set; }
+        public Node<T> First { get; set; } // ссылка на первый узел списка
+
         public SingleLinkedList() // конструктор: создание пустого списка
         {
             First = null;
-        }
+        } 
 
-        public SingleLinkedList(int[] dates) // first – ссылка на первый узел списка
+        public SingleLinkedList(T[] dates) // first – ссылка на первый узел списка
         { // dates – массив значений информационных полей
           // last – ссылка на последний узел списка
             if (dates.Length == 0) First = null; // создание пустого списка
-            else
-            {
-                First = new Node(dates[0], null); // создание первого узла списка
-                Last = First;
-                // цикл включения в список остальных элементов
-                for (int i = 1; i < dates.Length; i++)
-                {
-                    Node p = new Node(dates[i], null); // создание узла списка
-                    Last.Link = p; // вставка нового узла за текущим последним узлом
-                    Last = p; // новое значение ссылки на последний узел
-                }
             }
         }
-        public void InsertBeforeFirst(int data)
+        public void InsertBeforeFirst(T data)
         {
-            Node p = new Node(data, First);
+            Node<T> p = new Node<T>(data, First);
             First = p; // новое значение ссылки на первый узел
             // first – ссылка на первый узел списка
             // data – значение информационного поля
@@ -200,5 +190,5 @@ namespace LinkedList
             }
             p.Link = q;
         }
-    }
+    
 }

@@ -1,5 +1,10 @@
 ﻿using System;
-using LinkedListString;
+using System.Collections.Generic;
+using System.Collections;
+using System.Reflection.Metadata.Ecma335;
+using System.Globalization;
+using System.Net.Sockets;
+
 namespace Testing
 {
 
@@ -7,7 +12,7 @@ namespace Testing
     {
         static public void Main()
         {
-            Console.WriteLine(DigitalRoot(543));
+            Console.WriteLine(Kata.Persistence(39));
         }
         public static string AddBinary(int a, int b)
             {
@@ -137,35 +142,6 @@ namespace Testing
             }
             return wordreturn;
         }
-        public static int[] ArrayDiff(int[] a, int[] b)
-        {
-            int[] ap = new int[a.Length];
-            int value = a.Length;
-            for(int i = 0;i < b.Length; i++)
-            {
-                int k = 0;
-                for (int j = 0;j < a.Length; j++)
-                {
-                    if (b[i] == a[j])
-                    {
-                        value -= 1;
-                        
-                    }
-                    else
-                    {
-                        ap[k] = a[j];
-                        k++;
-                    }
-
-                }
-            }
-            int[] array = new int[value];
-            for(int i = 0;i < value; i++)
-            {
-                array[i] = ap[i];
-            }
-            return array;
-        }
         public static int DigitalRoot(long n)
         {
             long sum = 0;
@@ -179,6 +155,134 @@ namespace Testing
             }
             return (int)sum;
         }
+        public static string Rgb(params long[] rgb)
+        {
+            for (int i = 0; i < rgb.Length; i++)
+            { if (rgb[i] > 255)
+                    rgb[i] = 255;
+                if (rgb[i] < 0)
+                    rgb[i] = 0;
+            }
+            string str = null;
+            for (int i = 0; i < 3; i++)
+                if (rgb[i] != 00)
+                    if(Convert.ToString(rgb[i], 16).Length == 2)
+                    str += Convert.ToString(rgb[i], 16).ToUpper();
+                    else
+                    str += '0' + Convert.ToString(rgb[i], 16).ToUpper();
+                else
+                    str += "00";
+                
+            return str;
+        }
+        public static string GoodVsEvil(string good, string evil)
+        {
+            byte[] goodUnits = { 1, 2, 3, 3, 4, 10 };
+            byte[] evilUnits = { 1, 2, 2, 2, 3, 5, 10 };
+            string[] arrayGood = good.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] arrayEvil = evil.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            int goodInt = 0;
+            int evilInt = 0;
+            for (int i = 0; i < goodUnits.Length; i++)
+                goodInt += goodUnits[i] * int.Parse(arrayGood[i]);
+            for (int j = 0; j < evilUnits.Length; j++)
+                evilInt += evilUnits[j] * int.Parse(arrayEvil[j]);
+            if (goodInt > evilInt)
+                return "Battle Result: Good triumphs over Evil";
+            else if (goodInt < evilInt)
+                return "Battle Result: Evil eradicates all trace of Good";
+            else
+                return "Battle Result: No victor on this battle field";
+
+
+
+
+        }
+        public static (int, int)? IsPerfectPower(int n)
+        {
+            int i = 2;
+            while(i < 100000 && Math.Round(Math.Log(n,i),4) % 1 != 0 )
+                i++;
+            if (i < 100 && (int)Math.Log(n,i) > 1)
+              return (i, (int)Math.Round(Math.Log(n, i), 1));
+              else
+              return null;
+        }
+        public static string FirstNonRepeatingLetter(string s)
+        {
+            string str = s.ToUpper();
+            if (s.Length != 1)
+            {
+                int i = 0;
+                while(i < str.Length && str.IndexOf(str[i],i + 1) != -1)
+                {
+                    str = str.Remove(str.IndexOf(str[i],i+1),1);
+                    if (str.IndexOf(str[i], i + 1) == -1)
+                        i++;
+                }
+                if (i == str.Length)
+                {
+                    return "";
+                }
+                else
+                {
+                    int j = 0;
+                    while (str[i] != char.ToLower(s[j]) && str[i] != char.ToUpper(s[j]) )
+                    {
+                        j++;
+                    }
+                    return s[j].ToString();
+                }
+            }
+            else
+            {
+                return s.Substring(0, 1);
+            }
+        }
+        public static int[] ArrayDiff(int[] a, int[] b)
+        {
+            int length = 0;
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (Array.IndexOf(b, a[i]) == -1)
+                {
+                    length++;
+                }
+            }
+            int[] array = new int[length];
+            int j = 0;
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (Array.IndexOf(b, a[i]) == -1)
+                {
+                    array[j] = a[i];
+                    j++;
+                }
+            }
+            return array;
+        }
+        public static int Persistence(long n)
+        {
+
+            int value;
+            if (n.ToString().Length != 1)
+            {
+                long num = 1;
+                for (int i = 0; i < n.ToString().Length; i++)
+                {
+                    num = (n.ToString()[i] - '0') * num;
+                }
+                
+                value = num == n? Persistence(num) + 1 : Persistence(num);
+            }
+            else
+            {
+                value = 1;
+            }
+            return value;
+
+        }
+
     }
 
 }
